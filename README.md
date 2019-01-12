@@ -1,5 +1,5 @@
-配置一个完整的，小hadoop集群，后续还会加入hbase,hive，spark进入
 ```
+配置一个完整的，小hadoop集群，后续还会加入hbase,hive，spark进入
 plan:
                master                  slave1                       slave2
 HDFS           namenode                namenode
@@ -20,13 +20,13 @@ yarn           resourcemanager         resourcemanager
              kfk ALL=(root)NOPASSWS:ALL 
           
 ```
+```
 hbase 配置简单一点，但是hbase底层是依赖HDFS，所以hbase启动之前需要启动hdfs集群
 hbase包，里面含有zookeeper如果不想使用它自带的zookeeper需要在hbase-env.sh配置
 hbase-env.sh中配置:
      export JAVA_HOME=/usr/java/jdk
      export HBASE_MANAGES_ZK=false
 
-```
  hbase plan:
             master                    slave1                   slave2
             hmaster                   hmaster                  hregionserver
