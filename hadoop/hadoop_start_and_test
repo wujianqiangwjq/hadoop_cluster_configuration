@@ -1,0 +1,41 @@
+首次启动:
+1. HDFS 需要初始化
+    1.1 启动master,slave1,slave2 journalnode 服务
+        hadoop-daemon.sh start journalnode
+    1.2 初始化master 的namenode
+        hdfs namenode -format
+        或hdfs namenode -format ns
+    1.3 启动master namenode 服务
+        hadoop-daemon.sh start namenode
+    1.4 slave1同步master namenode数据
+        hdfs namenode -bootstrapStandby
+    1.5 启动slave1 namenode 服务
+        hadoop-daemon.sh start namenode
+    1.6 启动所有节点的datanode服务
+        hadoop-daemon.sh start datanode
+2. Zookeeper初始化
+    2.1 停止HDFS服务(可以使用stop-dfs.sh)
+    2.2 启动zookeeper集群(master,slave1,slave2)
+        zkServer.sh start
+    2.3初始化zkfc(master,在一台上就可以)
+       hdfs zkfc -formatZK
+    2.4 启动HDFS集群服务
+        start-df.sh，最好一个服务一个服务启动，最先启动journalnode
+    2.5 master 启动zkfc服务
+        hadoop-daemon.sh start zkfc
+    2.6 slave1启动zkfc
+        hadoop-daemon.sh start zkfc
+yarn服务启动:
+    1. start-yarn.sh
+        但是standby的resourcemanager 不会启动
+    2.手动启动slave1的resourcemanager服务
+        yarn-daemon.sh start resourcemanager
+测试HDFS:
+  hdfs dfs -mkdir /wujq
+  hdfs dfs -put file1 /wujq/  上传
+  hdfs dfs -get /wujq/file1  /  下载
+  hdfs dfs -text  /wujq/files   查看文件
+yarn测试:
+  yarn jar share/hadoop/mapreducehadoop-mapreduce-examples-2.6.0-cdh5.9.3.jar wordcount  /wujq/file1 /wujq/output
+
+

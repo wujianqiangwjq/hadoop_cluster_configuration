@@ -1,0 +1,46 @@
+zoo.cfg配置:
+timeTime:服务器与服务器之间的时间心跳的间隔 单位毫秒
+initLimit: 配置follow与Leader初始化连接时最长能忍受多少个心跳时间间隔数
+syncLimit: follow与Leader发送消息的最长的时间间隔
+dataDir=/zkData 数据存放位置
+clientPort=2181 连接端口
+单节点到此结束，以下时分布式配置
+master slave1  salve2
+master,slave1,slave2:
+ 添加
+  server.1=master:2888:3888
+  server.2=slave1:2888:3888
+  server.3=slave2:2888:3888
+2888是leader与follow，follow与follow通讯的端口号
+3888是选举的端口号
+1,2,3分别是zookeeperid
+master:
+  touch /zkData/myid
+  echo 1 > /zkData/myid  
+  要与配置一致
+  server.1=master:2888:3888
+slave1:
+  touch /zkData/myid
+  echo 2 > /zkData/myid 
+slave2:
+  touch /zkData/myid
+  echo 3 > /zkData/myid 
+zookeeper服务启动:
+ 所有节点：
+    zkServer.sh start 
+    jps查看
+启动之后，可以使用zkServer.sh status 查看是follow还是leader
+zkCli.sh 可以连接进入
+
+zookeeper集群个数满足2n+1, n是允许损坏个数,3台机器，n=1即只允许一台顺坏，否则zookeeper不能正常工作，zkCli.sh 连不上.
+
+测试:
+    ls / 查看主目录
+    create /kfa cao  创建目录kfa 值为cao
+    get /kfa    获取值
+
+
+
+
+
+
