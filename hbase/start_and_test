@@ -1,0 +1,10 @@
+服务启动:
+	bin/start-hbase.sh
+  所有服务都会启动
+测试:
+  web端口是60010
+  bin/hbase shell
+  create 'mytest','myclm'  创建表
+  list      查看表
+  put   'mytest','0001','myclm:usrname','wujq'
+ 
