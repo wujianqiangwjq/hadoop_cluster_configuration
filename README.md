@@ -12,7 +12,7 @@ zookeeper      zookeeper               zookeeper                   zookeeper
 yarn           resourcemanager         resourcemanager 
                nodemanager             nodemanager                nodemanager
 准备环境:
-	1. jdk
+	1. jdk8
         2. 用户 kfk,并且配置好无密码访问
         3. ulimit 设置,请不要乱设值，否则系统可莪能无法启动。
             kfk  -       nofile  32768
@@ -27,7 +27,7 @@ hbase包，里面含有zookeeper如果不想使用它自带的zookeeper需要在
 注意JDK的版本，hbase 支持JDK8，JDK7不支持
 download: http://archive.cloudera.com/cdh5/cdh/5
 hbase-env.sh中配置:
-     export JAVA_HOME=/usr/java/jdk
+     export JAVA_HOME=/usr/java/jdk8
      export HBASE_MANAGES_ZK=false
 
  hbase plan:
