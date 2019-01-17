@@ -26,15 +26,21 @@ hbase 配置简单一点，但是hbase底层是依赖HDFS，所以hbase启动之
 hbase包，里面含有zookeeper如果不想使用它自带的zookeeper需要在hbase-env.sh配置
 注意JDK的版本，hbase 支持JDK8，JDK7不支持
 download: http://archive.cloudera.com/cdh5/cdh/5
-hbase-env.sh中配置:
+配置:
+  1. hbase-env.sh中配置:
      export JAVA_HOME=/usr/java/jdk8
      export HBASE_MANAGES_ZK=false
+  2. hbase-site.xml配置:
+     1. 配置zookeeper
+     2.打开分布式开关 
+  3. copy Hadoop 下的 core-site.xml,hdfs-site.xml到hbase conf文件下,否则在启动regionserver时找不到HDFS
 
  hbase plan:
             master                    slave1                   slave2
             hmaster                   hmaster                  hregionserver
             hregionserver             hregionserver
             zookeeper                 zookeeper                zookeeper
+ 
 hmaster 就是master服务
 hregionserver 就是regionserver服务
 ```
