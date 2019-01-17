@@ -63,4 +63,22 @@ spark 配置:
            2. mesos
            新版本可能还有其它的
         选择yarn的话，在spark-env.sh必须配置HADOOP_HOME,HADOOP_CONF_DIR
-```      
+```     
+```
+kafka 是一种分布式消息框架，类似的还有rabbitmq,性能上kafka高于rabbitmq但是kafka不能保证数据的完整，rabbitmq可以它是一种持久化的消息队列框架
+ download:   https://archive.apache.org/dist
+ 配置也很简单:
+    1. server.properties文件:
+    	1.1 broker.id = 0	 每台机器配置不一样
+        1.2 zookeeper配置        配置zookeeper，可以使用现有的zookeeper
+ 启动服务:
+   bin/kafka-server-start.sh config/server.properties
+ 创建topic: 
+   bin/kafka-topics.sh --create --zookeeper master:2181,slave1:2181,slave2:2181 --replication-factor 1 --partitions 1    --topic test
+ 查看topic:
+   bin/kafka-topics.sh --list --zookeeper localhost:2181
+ 生产者:
+   bin/kafka-console-producer.sh --broker-list master:9092,slave1:9092,slave2:9092 --topic test
+ 消费者:
+   bin/kafka-console-consumer.sh --bootstrap-server master:9092,slave1:9092,slave2:9092 --topic test --from-beginning
+``` 
