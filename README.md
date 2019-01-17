@@ -35,3 +35,21 @@ hbase-env.sh中配置:
 hmaster 就是master服务
 hregionserver 就是regionserver服务
 ```
+```
+hive 配置，Hive是facebook开源的，用于解决海量结构化数据的统计,它提供了SQL查询功能
+ hive架构:
+         1. 底层的HDFS
+         2. yarn 的mapreduce 计算(sql语句执行)
+         3. meta store 可以是mysql，也可以是默认的
+ 配置:
+      1. 在hive-env.sh中配置:
+	HIVE_CONF_DIR
+        HADOOP_HOME
+      2. HDFS文件系统中创建文件:
+        hadoop fs -mkdir  /tmp
+        hadoop fs -chmod g+w   /tmp
+ 	hadoop fs -mkdir  -p /user/hive/warehouse
+	hadoop fs -chmod g+w   /user/hive/warehouse
+启动hive进入
+```
+      
