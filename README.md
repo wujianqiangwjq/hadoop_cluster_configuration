@@ -1,5 +1,6 @@
 ```
 配置一个完整的，小hadoop集群，后续还会加入hbase,hive，spark进入
+download: http://archive.cloudera.com/cdh5/cdh/5
 plan:
                master                  slave1                       slave2
 HDFS           namenode                namenode
@@ -24,6 +25,7 @@ yarn           resourcemanager         resourcemanager
 hbase 配置简单一点，但是hbase底层是依赖HDFS，所以hbase启动之前需要启动hdfs集群
 hbase包，里面含有zookeeper如果不想使用它自带的zookeeper需要在hbase-env.sh配置
 注意JDK的版本，hbase 支持JDK8，JDK7不支持
+download: http://archive.cloudera.com/cdh5/cdh/5
 hbase-env.sh中配置:
      export JAVA_HOME=/usr/java/jdk
      export HBASE_MANAGES_ZK=false
@@ -42,6 +44,7 @@ hive 配置，Hive是facebook开源的，用于解决海量结构化数据的统
          1. 底层的HDFS
          2. yarn 的mapreduce 计算(sql语句执行)
          3. meta store 可以是mysql，也可以是默认的
+download: http://archive.cloudera.com/cdh5/cdh/5
  配置:
       1. 在hive-env.sh中配置:
 	HIVE_CONF_DIR
@@ -54,8 +57,8 @@ hive 配置，Hive是facebook开源的，用于解决海量结构化数据的统
 启动hive进入
 ```
 ```
+download: http://spark.apache.org/
 spark 配置:
-	download: http://spark.apache.org/
         注意Hadoop版本的选择
         配置主要是spark-env.sh和slaves
         spark 的调度器可以有多种选择
