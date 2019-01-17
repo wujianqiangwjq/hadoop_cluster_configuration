@@ -1,0 +1,8 @@
+启动服务:
+	 sbin/start-all.sh
+shell连接进入:
+	sbin/spark-shell  --master spark://master:8080  (8080是默认端口)
+sbin/pyspark py环境进入
+提交分布式作业:
+	sbin/spark-submit  --master yarn --deloy-model cluster ....
+
