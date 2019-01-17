@@ -23,6 +23,7 @@ yarn           resourcemanager         resourcemanager
 ```
 hbase 配置简单一点，但是hbase底层是依赖HDFS，所以hbase启动之前需要启动hdfs集群
 hbase包，里面含有zookeeper如果不想使用它自带的zookeeper需要在hbase-env.sh配置
+注意JDK的版本，hbase 支持JDK8，JDK7不支持
 hbase-env.sh中配置:
      export JAVA_HOME=/usr/java/jdk
      export HBASE_MANAGES_ZK=false
@@ -52,4 +53,14 @@ hive 配置，Hive是facebook开源的，用于解决海量结构化数据的统
 	hadoop fs -chmod g+w   /user/hive/warehouse
 启动hive进入
 ```
-      
+```
+spark 配置:
+	download: http://spark.apache.org/
+        注意Hadoop版本的选择
+        配置主要是spark-env.sh和slaves
+        spark 的调度器可以有多种选择
+           1. yarn
+           2. mesos
+           新版本可能还有其它的
+        选择yarn的话，在spark-env.sh必须配置HADOOP_HOME,HADOOP_CONF_DIR
+```      
